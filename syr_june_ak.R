@@ -11,6 +11,7 @@ library(tidyr)
 source("functions/to_alphanumeric_lowercase.R")
 source("functions/analysisplan_factory.R")
 source("functions/results_handling.R")
+source("functions/standardised_kobo_questions.R")
 
 questions <- read.csv("input/questions.csv",
          stringsAsFactors = F)
@@ -28,11 +29,23 @@ sampleframe <- sampleframe %>% group_by(PCODE.Admin4) %>%
   summarise(gov_population = sum(Households)) %>% 
   rename(stratum = PCODE.Admin4)
 
-?load_questionnaire
-
 questionnaire <- load_questionnaire(data.frame(),questions = questions, choices = choices, choices.label.column.to.use = NULL)
 
-questionnaire$question_type("")
+
+library("kobostandards")
+
+
+check_assessment <- check_input(data = NULL,
+                                questions = questions,
+                                choices = choices,
+                                samplingframe = sampleframe,
+                                analysisplan = NULL)
+
+table(check_assessment$issue)
+
+
+
+
 
 #percentage from categorical variables
 #choices %>% group_by(list_name,name) %>% summarise (n = n()) %>% mutate(freq = n / sum(n))

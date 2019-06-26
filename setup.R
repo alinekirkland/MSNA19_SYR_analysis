@@ -36,10 +36,10 @@ devtools::install_github(
   build_vignettes = T)
 
 
-
 devtools::install_github(
   "mabafaba/xlsformfill",
-  build_vignettes = T)
+  build_vignettes = T,
+  force = TRUE)
 
 devtools::install_github(
   "mabafaba/composr",

@@ -1,7 +1,7 @@
 # setup
 
 library(dplyr)
-library(koboquest) # manage kobo questionnairs
+library(koboquest) # manage kobo questionnaires
 library(kobostandards) # check inputs for inconsistencies
 library(xlsformfill) # generate fake data for kobo
 library(hypegrammaR) # simple stats 4 complex samples
@@ -25,7 +25,6 @@ questions <- read.csv("input/questionnaire_questions.csv",
 questionnaire_issues<-check_input(questions = questions, choices = choices)
 questionnaire_issues %>% write.csv("./output/issues_with_questionnaire.csv")
 browseURL("./output/issues_with_questionnaire.csv")
-
 
 # preprocessing questions sheet
 # ...
